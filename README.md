@@ -19,3 +19,4 @@ samples, guidance on mobile development, and a full API reference.
 535230027 - Jovandi Todana
 535230031 _ Heru Purnomo
 535230006 _ Jessen Ericko
+535230110 - Adidtiya Kurniawan
