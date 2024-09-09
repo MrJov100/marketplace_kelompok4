@@ -177,7 +177,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-}
+
 
 class CategoryTile extends StatelessWidget {
   final String image;
