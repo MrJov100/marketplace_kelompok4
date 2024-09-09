@@ -3,6 +3,8 @@ import 'package:marketplace_kelompok4/pages/home.dart';
 import 'package:marketplace_kelompok4/pages/onboarding.dart';
 import 'package:marketplace_kelompok4/pages/product_detail.dart';
 
+import 'pages/bottomnav.dart';
+
 void main() {
   runApp(const MyApp());
 }

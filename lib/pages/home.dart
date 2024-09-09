@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,6 +11,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold();
+  }
+}
+
   List categories = [
     "images/headphone_icon.png",
     "images/laptop.png",
@@ -262,4 +271,3 @@ class ProductCard extends StatelessWidget {
   }
 }
 
-//Menit : 1.33.30
