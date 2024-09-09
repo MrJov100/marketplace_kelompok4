@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,13 +9,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
-  }
-}
-
   List categories = [
     "images/headphone_icon.png",
     "images/laptop.png",
@@ -28,11 +19,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(241, 255, 255, 255),
+      backgroundColor: Color.fromARGB(241, 255, 255, 255),
       body: SingleChildScrollView(
         // Added to enable scrolling
         child: Container(
-          margin: const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
+          margin: EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -62,7 +53,7 @@ class _HomeState extends State<Home> {
                       )),
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                 height: 30.0,
               ),
               Container(
@@ -75,38 +66,38 @@ class _HomeState extends State<Home> {
                         border: InputBorder.none,
                         hintText: "Search Products",
                         hintStyle: AppWidget.LighttextFeildStyle(),
-                        prefixIcon: const Icon(
+                        prefixIcon: Icon(
                           Icons.search,
                           color: Colors.black,
                         )),
                   )),
-              const SizedBox(
+              SizedBox(
                 height: 20.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Categories", style: AppWidget.semiboldTextFeildStyle()),
-                  const Text("See all",
+                  Text("See all",
                       style: TextStyle(
                           color: Color(0xFFfd6f3e),
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold)),
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                 height: 20.0,
               ),
               Row(
                 children: [
                   Container(
                       height: 130,
-                      padding: const EdgeInsets.all(20.0),
-                      margin: const EdgeInsets.only(right: 20.0),
+                      padding: EdgeInsets.all(20.0),
+                      margin: EdgeInsets.only(right: 20.0),
                       decoration: BoxDecoration(
-                          color: const Color(0xFFFD6F3E),
+                          color: Color(0xFFFD6F3E),
                           borderRadius: BorderRadius.circular(10)),
-                      child: const Center(
+                      child: Center(
                           child: Text("All",
                               style: TextStyle(
                                   color: Colors.white,
@@ -114,7 +105,7 @@ class _HomeState extends State<Home> {
                                   fontWeight: FontWeight.bold)))),
                   Expanded(
                     child: Container(
-                      margin: const EdgeInsets.only(left: 20.0),
+                      margin: EdgeInsets.only(left: 20.0),
                       height: 130,
                       child: ListView.builder(
                         padding: EdgeInsets.zero,
@@ -129,7 +120,7 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                 height: 10.0,
               ),
               Row(
@@ -137,14 +128,14 @@ class _HomeState extends State<Home> {
                 children: [
                   Text("All Products",
                       style: AppWidget.semiboldTextFeildStyle()),
-                  const Text("See all",
+                  Text("See all",
                       style: TextStyle(
                           color: Color(0xFFfd6f3e),
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold)),
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                 height: 10.0,
               ),
               SizedBox(
@@ -177,7 +168,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
+}
 
 class CategoryTile extends StatelessWidget {
   final String image;
@@ -186,8 +177,8 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(20.0),
-        margin: const EdgeInsets.only(right: 20.0),
+        padding: EdgeInsets.all(20.0),
+        margin: EdgeInsets.only(right: 20.0),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         height: 90,
@@ -201,7 +192,7 @@ class CategoryTile extends StatelessWidget {
                 width: 50,
                 fit: BoxFit.cover,
               ),
-              const Icon(Icons.arrow_forward)
+              Icon(Icons.arrow_forward)
             ]));
   }
 }
@@ -220,8 +211,8 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 20.0),
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      margin: EdgeInsets.only(right: 20.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -238,27 +229,27 @@ class ProductCard extends StatelessWidget {
             name,
             style: AppWidget.semiboldTextFeildStyle(),
           ),
-          const SizedBox(
+          SizedBox(
             height: 10.0,
           ),
           Row(
             children: [
               Text(
                 price,
-                style: const TextStyle(
+                style: TextStyle(
                     color: Color(0xFFfd6f3e),
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
+              SizedBox(
                 width: 40.0,
               ),
               Container(
-                padding: const EdgeInsets.all(5),
+                padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
-                    color: const Color(0xFFfd6f3e),
+                    color: Color(0xFFfd6f3e),
                     borderRadius: BorderRadius.circular(7)),
-                child: const Icon(
+                child: Icon(
                   Icons.add,
                   color: Colors.white,
                 ),
@@ -271,3 +262,4 @@ class ProductCard extends StatelessWidget {
   }
 }
 
+//Menit : 1.33.30

@@ -19,8 +19,9 @@ class _BottomNavState extends State<BottomNav> {
   int currentTabIndex = 0;
 
   @override
-  void initState() {  // Nama metode harus 'initState'
-    super.initState();  // Panggil 'super.initState()' di awal
+  void initState() {
+    // Nama metode harus 'initState'
+    super.initState(); // Panggil 'super.initState()' di awal
     HomePage = const Home();
     order = Order();
     profile = Profile();
@@ -37,7 +38,7 @@ class _BottomNavState extends State<BottomNav> {
         animationDuration: const Duration(milliseconds: 500),
         onTap: (int index) {
           setState(() {
-            currentTabIndex = index;  // Set 'currentTabIndex' ketika tab diubah
+            currentTabIndex = index; // Set 'currentTabIndex' ketika tab diubah
           });
         },
         items: const [
