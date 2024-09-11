@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/login.dart';
 import 'package:marketplace_kelompok4/pages/signup.dart';
+import 'package:marketplace_kelompok4/pages/bottomnav.dart';
+import 'package:marketplace_kelompok4/pages/home.dart';
+import 'package:marketplace_kelompok4/pages/onboarding.dart';
+import 'package:marketplace_kelompok4/pages/product_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           // This is the theme of your application.
           //
@@ -33,7 +38,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: LogIn());
+        home: const BottomNav());
   }
 }
 
