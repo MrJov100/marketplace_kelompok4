@@ -87,6 +87,7 @@ class _LogInState extends State<LogIn> {
                     color: Color(0xFFF4F5F9),
                     borderRadius: BorderRadius.circular(20)),
                 child: const TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                       border: InputBorder.none, hintText: "Password"),
                 ),

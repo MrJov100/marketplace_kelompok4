@@ -98,7 +98,7 @@ class _SignUpState extends State<SignUp> {
                 height: 20.0,
               ),
               const Align(
-                alignment: Alignment.centerLeft, // Align to left
+                alignment: Alignment.centerLeft,
                 child: Text(
                   "Password",
                   style: TextStyle(
@@ -114,6 +114,7 @@ class _SignUpState extends State<SignUp> {
                     color: Color(0xFFF4F5F9),
                     borderRadius: BorderRadius.circular(20)),
                 child: const TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                       border: InputBorder.none, hintText: "Password"),
                 ),
