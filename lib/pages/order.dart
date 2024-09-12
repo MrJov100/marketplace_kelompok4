@@ -12,9 +12,9 @@ class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff2f2f2),
+      backgroundColor: Color.fromARGB(237, 163, 185, 215),
       appBar: AppBar(
-        backgroundColor: Color(0xfff2f2f2),
+        backgroundColor: Color.fromARGB(237, 163, 185, 215),
         title: Text(
           "Current Orders",
           style: AppWidget.boldTextFeildStyle(),
@@ -25,7 +25,6 @@ class _OrderState extends State<Order> {
         margin: EdgeInsets.only(left: 20.0, right: 20.0),
         child: Column(
           children: [
-            // Order for Apple Watch
             Material(
               elevation: 3.0,
               borderRadius: BorderRadius.circular(10),
