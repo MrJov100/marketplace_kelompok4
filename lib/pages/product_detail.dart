@@ -59,7 +59,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           "Headphone",
                           style: AppWidget.boldTextFeildStyle(),
                         ),
-                        const Text("\$300",
+                        const Text("\$100",
                             style: TextStyle(
                                 color: Color(0xFFfd6f3e),
                                 fontSize: 23.0,

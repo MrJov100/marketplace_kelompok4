@@ -27,13 +27,14 @@ class _BottomNavState extends State<BottomNav> {
     order = Order();
     profile = Profile();
     pages = [homePage, order, profile];
-    currentTabIndex = widget.initialTabIndex; // Set initial tab index
+    currentTabIndex = widget.initialTabIndex; 
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
+        index: currentTabIndex, 
         height: 65,
         backgroundColor: Color.fromARGB(237, 163, 185, 215),
         color: Colors.black,
@@ -49,7 +50,7 @@ class _BottomNavState extends State<BottomNav> {
             color: Colors.white,
           ),
           Icon(
-            Icons.shopping_bag_outlined, // Shopping bag icon for Order tab
+            Icons.shopping_bag_outlined, 
             color: Colors.white,
           ),
           Icon(
