@@ -57,9 +57,9 @@ class _OrderState extends State<Order> {
                                   color: Color(0xFFfd6f3e),
                                   fontSize: 23.0,
                                   fontWeight: FontWeight.bold)),
-                          Text("Status : " "Delivered",
+                          Text("Status : " "On The Way",
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 56, 188, 109),
+                                  color: Color(0xFFfd6f3e),
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold))
                         ],
@@ -102,9 +102,9 @@ class _OrderState extends State<Order> {
                                   color: Color(0xFFfd6f3e),
                                   fontSize: 23.0,
                                   fontWeight: FontWeight.bold)),
-                          Text("Status : " "On The Way",
+                           Text("Status : " "Delivered",
                               style: TextStyle(
-                                  color: Color(0xFFfd6f3e),
+                                  color: Color.fromARGB(255, 56, 188, 109),
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold))
                         ],
