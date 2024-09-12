@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:marketplace_kelompok4/pages/bottomnav.dart'; // Import BottomNav
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -15,21 +16,27 @@ class _PaymentPageState extends State<PaymentPage> {
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _zipController = TextEditingController();
 
-  
-  final double productPrice = 300.0; 
+  final double productPrice = 300.0;
 
   void _processPayment() async {
-    
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Processing Payment...')),
     );
 
-    
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
 
-  
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Payment Successful')),
+    );
+
+    await Future.delayed(const Duration(seconds: 1));
+
+    // Navigate to BottomNav with initialTabIndex set to 1
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BottomNav(initialTabIndex: 1), // Set to Order tab
+      ),
     );
   }
 
@@ -42,7 +49,7 @@ class _PaymentPageState extends State<PaymentPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.grey[200], 
+          color: Colors.grey[200],
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,11 +60,10 @@ class _PaymentPageState extends State<PaymentPage> {
                 hintText: '1234 5678 9012 3456',
                 keyboardType: TextInputType.number,
                 prefixIcon: Icons.credit_card,
-                maxLength: 19, 
+                maxLength: 19,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(19),
-                  CardNumberInputFormatter(),
                 ],
               ),
               const SizedBox(height: 16),
@@ -70,11 +76,10 @@ class _PaymentPageState extends State<PaymentPage> {
                       hintText: 'MM/YY',
                       keyboardType: TextInputType.datetime,
                       prefixIcon: Icons.calendar_today,
-                      maxLength: 5, 
+                      maxLength: 5,
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
                         LengthLimitingTextInputFormatter(5),
-                        ExpiryDateInputFormatter(), 
                       ],
                     ),
                   ),
@@ -138,7 +143,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   elevation: 5,
                 ),
                 child: Text(
-                  "Pay \$${productPrice.toStringAsFixed(2)}", 
+                  "Pay \$${productPrice.toStringAsFixed(2)}",
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -171,7 +176,7 @@ class _PaymentPageState extends State<PaymentPage> {
             color: Colors.black.withOpacity(0.1),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: const Offset(0, 3), // Shadow position
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -200,50 +205,6 @@ class _PaymentPageState extends State<PaymentPage> {
           ],
         ),
       ),
-    );
-  }
-}
-
-
-class CardNumberInputFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    String text = newValue.text.replaceAll(RegExp(r'\s+'), '');
-    final newText = StringBuffer();
-    
-    for (int i = 0; i < text.length; i++) {
-      if (i % 4 == 0 && i != 0) newText.write(' ');
-      newText.write(text[i]);
-    }
-    
-    return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: newText.length),
-    );
-  }
-}
-
-
-class ExpiryDateInputFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    String text = newValue.text.replaceAll(RegExp(r'/'), '');
-    final newText = StringBuffer();
-    
-    for (int i = 0; i < text.length; i++) {
-      if (i == 2) newText.write('/');
-      newText.write(text[i]);
-    }
-
-    return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: newText.length),
     );
   }
 }
