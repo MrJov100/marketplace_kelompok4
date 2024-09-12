@@ -16,29 +16,29 @@ class _PaymentPageState extends State<PaymentPage> {
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _zipController = TextEditingController();
 
-  final double productPrice = 300.0;
+  final double productPrice = 100.0;
 
   void _processPayment() async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Processing Payment...')),
-    );
+ 
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(content: Text('Processing Payment...')),
+  );
 
-    await Future.delayed(const Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 2));
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Payment Successful')),
-    );
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(content: Text('Payment Successful')),
+  );
 
-    await Future.delayed(const Duration(seconds: 1));
+  await Future.delayed(const Duration(seconds: 2));
 
-    // Navigate to BottomNav with initialTabIndex set to 1
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => BottomNav(initialTabIndex: 1), // Set to Order tab
-      ),
-    );
-  }
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => BottomNav(initialTabIndex: 1), 
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
