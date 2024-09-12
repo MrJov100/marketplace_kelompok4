@@ -64,6 +64,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(19),
+                  CardNumberInputFormatter(), 
                 ],
               ),
               const SizedBox(height: 16),
@@ -80,6 +81,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
                         LengthLimitingTextInputFormatter(5),
+                        ExpiryDateInputFormatter(), 
                       ],
                     ),
                   ),
@@ -205,6 +207,41 @@ class _PaymentPageState extends State<PaymentPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class CardNumberInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    String text = newValue.text.replaceAll(RegExp(r'\s+'), '');
+    String newText = '';
+
+    for (int i = 0; i < text.length; i++) {
+      if (i % 4 == 0 && i != 0) newText += ' ';
+      newText += text[i];
+    }
+
+    return newValue.copyWith(
+      text: newText,
+      selection: TextSelection.collapsed(offset: newText.length),
+    );
+  }
+}
+
+
+class ExpiryDateInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    String text = newValue.text.replaceAll(RegExp(r'/'), '');
+    if (text.length > 2) {
+      text = '${text.substring(0, 2)}/${text.substring(2)}';
+    }
+
+    return newValue.copyWith(
+      text: text,
+      selection: TextSelection.collapsed(offset: text.length),
     );
   }
 }
