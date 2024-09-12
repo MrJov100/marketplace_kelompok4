@@ -70,7 +70,6 @@ class _OrderState extends State<Order> {
               ),
             ),
             SizedBox(height: 20.0),
-            // Order for Headphone
             Material(
               elevation: 3.0,
               borderRadius: BorderRadius.circular(10),
@@ -116,7 +115,6 @@ class _OrderState extends State<Order> {
               ),
             ),
             SizedBox(height: 20.0),
-            // Order for Laptop
             Material(
               elevation: 3.0,
               borderRadius: BorderRadius.circular(10),

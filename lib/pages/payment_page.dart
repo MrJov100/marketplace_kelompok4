@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:marketplace_kelompok4/pages/bottomnav.dart'; // Import BottomNav
+import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -31,11 +31,10 @@ class _PaymentPageState extends State<PaymentPage> {
 
     await Future.delayed(const Duration(seconds: 1));
 
-    // Navigate to BottomNav with initialTabIndex set to 1
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => BottomNav(initialTabIndex: 1), // Set to Order tab
+        builder: (context) => BottomNav(initialTabIndex: 1),
       ),
     );
   }
