@@ -20,8 +20,7 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   void initState() {
-    // Nama metode harus 'initState'
-    super.initState(); // Panggil 'super.initState()' di awal
+    super.initState();
     HomePage = const Home();
     order = Order();
     profile = Profile();
@@ -33,7 +32,7 @@ class _BottomNavState extends State<BottomNav> {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         height: 65,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(237, 163, 185, 215),
         color: Colors.black,
         animationDuration: const Duration(milliseconds: 500),
         onTap: (int index) {

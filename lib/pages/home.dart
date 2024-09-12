@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(241, 255, 255, 255),
+      backgroundColor: Color.fromARGB(237, 163, 185, 215),
       body: SingleChildScrollView(
         // Added to enable scrolling
         child: Container(
