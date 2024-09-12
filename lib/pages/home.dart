@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/product_detail.dart';
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
+import 'package:marketplace_kelompok4/pages/drawer_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -20,11 +21,26 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(237, 163, 185, 215),
+            backgroundColor: Color.fromARGB(237, 163, 185, 215),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFfd6f3e),
+        elevation: 0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(Icons.menu,
+                  color: const Color.fromARGB(255, 255, 255, 255)),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+      ),
+      drawer: const DrawerMenu(),
       body: SingleChildScrollView(
-        // Added to enable scrolling
         child: Container(
-          margin: EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
+          margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
