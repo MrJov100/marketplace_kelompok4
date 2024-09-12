@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace_kelompok4/pages/product_detail.dart';
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
 
 class Home extends StatefulWidget {
@@ -144,24 +145,51 @@ class _HomeState extends State<Home> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   children: [
-                    ProductCard(
-                      image: "images/headphone2.png",
-                      name: "Headphone",
-                      price: "\$100",
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProductDetail()),
+                        );
+                      },
+                      child: ProductCard(
+                        image: "images/headphone2.png",
+                        name: "Headphone",
+                        price: "\$100",
+                      ),
                     ),
-                    ProductCard(
-                      image: "images/watch2.png",
-                      name: "Apple Watch",
-                      price: "\$300",
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProductDetail()),
+                        );
+                      },
+                      child: ProductCard(
+                        image: "images/watch2.png",
+                        name: "Apple Watch",
+                        price: "\$300",
+                      ),
                     ),
-                    ProductCard(
-                      image: "images/laptop2.png",
-                      name: "Laptop",
-                      price: "\$1000",
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProductDetail()),
+                        );
+                      },
+                      child: ProductCard(
+                        image: "images/laptop2.png",
+                        name: "Laptop",
+                        price: "\$1000",
+                      ),
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -261,5 +289,3 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
-
-//Menit : 1.33.30
