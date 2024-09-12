@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace_kelompok4/pages/home.dart';
 import 'package:marketplace_kelompok4/pages/login.dart';
+import 'package:marketplace_kelompok4/pages/onboarding.dart';
+import 'package:marketplace_kelompok4/pages/order.dart';
+import 'package:marketplace_kelompok4/pages/product_detail.dart';
+import 'package:marketplace_kelompok4/pages/profile.dart';
 import 'package:marketplace_kelompok4/pages/signup.dart';
 import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 
@@ -35,7 +40,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const BottomNav());
+        home: const Onboarding());
   }
 }
 

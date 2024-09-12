@@ -40,7 +40,8 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+                padding:
+                    const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
