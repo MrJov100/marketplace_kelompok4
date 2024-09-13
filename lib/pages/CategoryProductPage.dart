@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'product_detail.dart'; // Assuming this is the file containing the ProductDetail page
+import 'product_detail.dart';
 
 class CategoryProductPage extends StatelessWidget {
   final String category;
