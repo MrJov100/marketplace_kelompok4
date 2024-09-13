@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace_kelompok4/pages/CategoryProductPage.dart';
 import 'package:marketplace_kelompok4/pages/product_detail.dart';
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
 import 'package:marketplace_kelompok4/pages/drawer_menu.dart';
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            backgroundColor: Color.fromARGB(237, 163, 185, 215),
+      backgroundColor: Color.fromARGB(237, 163, 185, 215),
       appBar: AppBar(
         backgroundColor: Color(0xFFfd6f3e),
         elevation: 0,
@@ -143,8 +144,7 @@ class _HomeState extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("All Products",
-                      style: AppWidget.semiboldTextFeildStyle()),
+                  Text("Flash Sale", style: AppWidget.semiboldTextFeildStyle()),
                   Text("See all",
                       style: TextStyle(
                           color: Color(0xFFfd6f3e),
@@ -166,7 +166,11 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProductDetail()),
+                              builder: (context) => const ProductDetail(
+                                    productName: 'Headphone',
+                                    productPrice: '\$100',
+                                    productImage: 'iamges/headphone2.png',
+                                  )),
                         );
                       },
                       child: ProductCard(
@@ -180,7 +184,11 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProductDetail()),
+                              builder: (context) => const ProductDetail(
+                                    productName: 'Apple Watch',
+                                    productPrice: '\$300',
+                                    productImage: 'images/watch2.png',
+                                  )),
                         );
                       },
                       child: ProductCard(
@@ -194,7 +202,11 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProductDetail()),
+                              builder: (context) => const ProductDetail(
+                                    productName: 'Laptop',
+                                    productPrice: '\$1000',
+                                    productImage: 'images/laptop2.png',
+                                  )),
                         );
                       },
                       child: ProductCard(
@@ -220,7 +232,17 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        String category = getCategoryFromImage(image);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryProductPage(category: category),
+          ),
+        );
+      },
+      child: Container(
         padding: EdgeInsets.all(20.0),
         margin: EdgeInsets.only(right: 20.0),
         decoration: BoxDecoration(
@@ -237,7 +259,17 @@ class CategoryTile extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Icon(Icons.arrow_forward)
-            ]));
+            ]),
+      ),
+    );
+  }
+
+  String getCategoryFromImage(String imagePath) {
+    if (imagePath.contains("headphone")) return "Headphone";
+    if (imagePath.contains("laptop")) return "Laptop";
+    if (imagePath.contains("watch")) return "Watch";
+    if (imagePath.contains("TV")) return "TV";
+    return "Category";
   }
 }
 

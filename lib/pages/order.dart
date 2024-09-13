@@ -14,15 +14,15 @@ class _OrderState extends State<Order> {
     return Scaffold(
       backgroundColor: Color.fromARGB(237, 163, 185, 215),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(237, 163, 185, 215),
+        backgroundColor: Color(0xFFfd6f3e),
         title: Text(
           "Current Orders",
-          style: AppWidget.boldTextFeildStyle(),
+          style: AppWidget.boldTextFeildStyle().copyWith(color: Colors.white),
         ),
         centerTitle: true,
       ),
       body: Container(
-        margin: EdgeInsets.only(left: 20.0, right: 20.0),
+        margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
         child: Column(
           children: [
             Material(
@@ -57,7 +57,7 @@ class _OrderState extends State<Order> {
                                   color: Color(0xFFfd6f3e),
                                   fontSize: 23.0,
                                   fontWeight: FontWeight.bold)),
-                          Text("Status : " "On The Way",
+                          Text("Status : " "Packaging",
                               style: TextStyle(
                                   color: Color(0xFFfd6f3e),
                                   fontSize: 20.0,
@@ -102,7 +102,7 @@ class _OrderState extends State<Order> {
                                   color: Color(0xFFfd6f3e),
                                   fontSize: 23.0,
                                   fontWeight: FontWeight.bold)),
-                           Text("Status : " "Delivered",
+                          Text("Status : " "Delivered",
                               style: TextStyle(
                                   color: Color.fromARGB(255, 56, 188, 109),
                                   fontSize: 20.0,

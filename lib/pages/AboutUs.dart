@@ -50,12 +50,22 @@ class AboutUs extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const Text(
-                'KELOMPOK 4\nPROJECT MARKETPLACE',
+                'PROJECT MARKETPLACE\nKELOMPOK 4',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                'Dosen Pembimbing:\nJANSON HENDRYLI S. Kom. M.Kom.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(height: 30),
@@ -68,7 +78,7 @@ class AboutUs extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.black54,
+                  color: Colors.black87,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -80,7 +90,7 @@ class AboutUs extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   fontStyle: FontStyle.normal,
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 110, 110, 110),
                 ),
               ),
               const SizedBox(height: 10),

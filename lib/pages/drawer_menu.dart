@@ -48,7 +48,7 @@ class DrawerMenu extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 100),
+            SizedBox(height: 20),
             ListTile(
               leading: Icon(Icons.logout, color: Colors.white),
               title: Text(
