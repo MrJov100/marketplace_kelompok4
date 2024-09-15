@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 import 'package:marketplace_kelompok4/pages/signup.dart';
 
 class LogIn extends StatefulWidget {
@@ -110,20 +111,26 @@ class _LogInState extends State<LogIn> {
               const SizedBox(
                 height: 30.0,
               ),
-              Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 2,
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: const Center(
-                    child: Text(
-                      "LOGIN",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold),
+              GestureDetector(
+                onTap: () => {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => BottomNav()))
+                },
+                child: Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    padding: const EdgeInsets.all(18),
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20.0)),
+                    child: const Center(
+                      child: Text(
+                        "LOGIN",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
