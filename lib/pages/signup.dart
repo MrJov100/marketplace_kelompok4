@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 import 'package:marketplace_kelompok4/pages/login.dart';
 
 class SignUp extends StatefulWidget {
@@ -122,20 +123,26 @@ class _SignUpState extends State<SignUp> {
               const SizedBox(
                 height: 20.0,
               ),
-              Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 2,
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: const Center(
-                    child: Text(
-                      "SIGNUP",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold),
+              GestureDetector(
+                onTap: () => {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => BottomNav())),
+                },
+                child: Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    padding: const EdgeInsets.all(18),
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+                        borderRadius: BorderRadius.circular(20.0)),
+                    child: const Center(
+                      child: Text(
+                        "SIGNUP",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
