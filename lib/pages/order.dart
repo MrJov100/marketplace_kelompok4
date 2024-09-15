@@ -12,20 +12,19 @@ class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff2f2f2),
+      backgroundColor: Color.fromARGB(237, 163, 185, 215),
       appBar: AppBar(
-        backgroundColor: Color(0xfff2f2f2),
+        backgroundColor: Color(0xFFfd6f3e),
         title: Text(
           "Current Orders",
-          style: AppWidget.boldTextFeildStyle(),
+          style: AppWidget.boldTextFeildStyle().copyWith(color: Colors.white),
         ),
         centerTitle: true,
       ),
       body: Container(
-        margin: EdgeInsets.only(left: 20.0, right: 20.0),
+        margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
         child: Column(
           children: [
-            // Order for Apple Watch
             Material(
               elevation: 3.0,
               borderRadius: BorderRadius.circular(10),
@@ -58,9 +57,9 @@ class _OrderState extends State<Order> {
                                   color: Color(0xFFfd6f3e),
                                   fontSize: 23.0,
                                   fontWeight: FontWeight.bold)),
-                          Text("Status : " "Delivered",
+                          Text("Status : " "Packaging",
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 56, 188, 109),
+                                  color: Color(0xFFfd6f3e),
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold))
                         ],
@@ -71,7 +70,6 @@ class _OrderState extends State<Order> {
               ),
             ),
             SizedBox(height: 20.0),
-            // Order for Headphone
             Material(
               elevation: 3.0,
               borderRadius: BorderRadius.circular(10),
@@ -104,9 +102,9 @@ class _OrderState extends State<Order> {
                                   color: Color(0xFFfd6f3e),
                                   fontSize: 23.0,
                                   fontWeight: FontWeight.bold)),
-                          Text("Status : " "On The Way",
+                          Text("Status : " "Delivered",
                               style: TextStyle(
-                                  color: Color(0xFFfd6f3e),
+                                  color: Color.fromARGB(255, 56, 188, 109),
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold))
                         ],
@@ -117,7 +115,6 @@ class _OrderState extends State<Order> {
               ),
             ),
             SizedBox(height: 20.0),
-            // Order for Laptop
             Material(
               elevation: 3.0,
               borderRadius: BorderRadius.circular(10),

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
+import 'package:marketplace_kelompok4/pages/payment_page.dart';
 
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({super.key});
+  const ProductDetail(
+      {super.key,
+      required String productName,
+      required String productPrice,
+      required String productImage});
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
@@ -13,7 +18,7 @@ class _ProductDetailState extends State<ProductDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 50.0, left: 20.0),
+        padding: const EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -59,7 +64,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           "Headphone",
                           style: AppWidget.boldTextFeildStyle(),
                         ),
-                        const Text("\$300",
+                        const Text("\$100",
                             style: TextStyle(
                                 color: Color(0xFFfd6f3e),
                                 fontSize: 23.0,
@@ -77,23 +82,32 @@ class _ProductDetailState extends State<ProductDetail> {
                       height: 10.0,
                     ),
                     const Text(
-                        "The product is very good. It have a 1 year waranty. These headphones are too good like you can also listen a person who is speaking slowly."),
+                        "The product is very good. It have a 1 year warranty. These headphones are too good like you can also listen to a person who is speaking slowly."),
                     const SizedBox(
                       height: 90.0,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      decoration: BoxDecoration(
-                          color: const Color(0xFFfd6f3e),
-                          borderRadius: BorderRadius.circular(10)),
-                      width: MediaQuery.of(context).size.width,
-                      child: const Center(
-                        child: Text(
-                          "Buy Now",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PaymentPage()),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFfd6f3e),
+                            borderRadius: BorderRadius.circular(10)),
+                        width: MediaQuery.of(context).size.width,
+                        child: const Center(
+                          child: Text(
+                            "Buy Now",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     )
