@@ -9,8 +9,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final String name = 'John Doe';
-  final String email = 'john.doe@example.com';
+  final String name = 'Jovandi';
+  final String email = 'Jovandi@gmail.com';
   final String phone = '123-456-7890';
   final String address = '123 Main Street, City';
   final String birthday = '1990-01-01';
