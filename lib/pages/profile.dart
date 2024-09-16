@@ -47,8 +47,8 @@ class _ProfileState extends State<Profile> {
             color: Color.fromARGB(237, 163, 185, 215),
           ),
         ),
-        Center(
-          child: SingleChildScrollView(
+        SingleChildScrollView(
+          child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +74,7 @@ class _ProfileState extends State<Profile> {
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
-                           image: DecorationImage(
+                          image: DecorationImage(
                               image: NetworkImage(
                                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0KehqXBrMLd32HsfjDoaq098WeNA0b3g_2A&s")),
                           boxShadow: [
@@ -86,7 +86,6 @@ class _ProfileState extends State<Profile> {
                             )
                           ],
                         ),
-                   
                       ),
                       _buildInfoField(label: 'Name', value: name),
                       _buildInfoField(label: 'Email', value: email),
@@ -98,10 +97,10 @@ class _ProfileState extends State<Profile> {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ProfileChangee()),
-                        );
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProfileChangee()),
+                          );
                         },
                         child: Container(
                           padding: const EdgeInsets.only(
