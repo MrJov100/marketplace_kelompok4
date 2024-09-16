@@ -1,117 +1,95 @@
 import 'package:flutter/material.dart';
+import 'home_admin.dart'; // Import file HomeAdmin
 
 class AdminLogin extends StatefulWidget {
-  const AdminLogin({super.key});
-
   @override
-  State<AdminLogin> createState() => _AdminLoginState();
-
+  _AdminLoginState createState() => _AdminLoginState();
 }
+
 class _AdminLoginState extends State<AdminLogin> {
-  TextEditingController usernamecontroller= new TextEditingController();
-  TextEditingController userpasswordcontroller= new TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String _errorMessage = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.only(
-              top: 50.0, left: 20.0, right: 20.0, bottom: 40.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/images/signup.png"),
-              const Text(
-                "Admin Panel",
+              SizedBox(height: 80), 
+              Image.asset(
+                'assets/images/admin_login.png', 
+                height: 200,
+              ),
+              SizedBox(height: 30), 
+              Text(
+                'Admin Panel',
                 style: TextStyle(
-                  fontWeight: FontWeight.w600, // Semibold
-                  fontSize: 20.0, // Sesuaikan dengan kebutuhan
-                  color: Colors.black,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const Align(
-                alignment: Alignment.centerLeft, // Align to left
-                child: Text(
-                  "Username",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20.0,
-                    color: Colors.black,
+              SizedBox(height: 20),
+              TextField(
+                controller: _usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
+              SizedBox(height: 20),
+              TextField(
+                controller: _passwordController,
+                obscureText: true, 
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 20.0),
-                decoration: BoxDecoration(
-                    color: Color(0xFFF4F5F9),
-                    borderRadius: BorderRadius.circular(20)),
-                child:  TextFormField(
+              SizedBox(height: 10),
+              if (_errorMessage.isNotEmpty)
+                Text(
+                  _errorMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  String username = _usernameController.text;
+                  String password = _passwordController.text;
 
-                  controller: usernamecontroller,
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: "Username"),
+                  if (username.isEmpty || password.isEmpty) {
+                    setState(() {
+                      _errorMessage = 'Username atau Password tidak boleh kosong!';
+                    });
+                  } else if (username == "Admin" && password == "Admin") {
+                    setState(() {
+                      _errorMessage = ''; 
+                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeAdmin()),
+                    );
+                  } else {
+                    setState(() {
+                      _errorMessage = 'Username atau Password salah!';
+                    });
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 100),
+                  backgroundColor: Colors.green,
+                  textStyle: TextStyle(fontSize: 18),
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-  
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Password",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20.0,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 20.0),
-                decoration: BoxDecoration(
-                    color: Color(0xFFF4F5F9),
-                    borderRadius: BorderRadius.circular(20)),
-                child:  TextFormField(
-                  obscureText: true,
-
-                  controller: userpasswordcontroller,
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: "Password"),
-                ),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              GestureDetector(
-                onTap: () {
-                  loginAdmin();
-                }
-              ),
-              Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 2,
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: const Center(
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 15.0,
+                child: Text('LOGIN'),
               ),
             ],
           ),
@@ -119,9 +97,4 @@ class _AdminLoginState extends State<AdminLogin> {
       ),
     );
   }
-
-  loginAdmin(){
-    
-  }
 }
- 

@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/images/login.png
     - assets/images/signup.png
+    - assets/images/admin_login.png
     - images/boy.png
     - images/headphone_icon.png
     - images/laptop.png

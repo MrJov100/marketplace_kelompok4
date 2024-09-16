@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/Admin/add_product.dart';
 import 'package:marketplace_kelompok4/Admin/admin_login.dart';
+import 'package:marketplace_kelompok4/Admin/all_order.dart';
 import 'package:marketplace_kelompok4/Admin/home_admin.dart';
-import 'package:marketplace_kelompok4/pages/login.dart';
-import 'package:marketplace_kelompok4/pages/signup.dart';
-import 'package:marketplace_kelompok4/pages/bottomnav.dart';
-import 'package:marketplace_kelompok4/pages/home.dart';
-import 'package:marketplace_kelompok4/pages/onboarding.dart';
-import 'package:marketplace_kelompok4/pages/product_detail.dart';
-import 'package:marketplace_kelompok4/pages/product_detail.dart';
-import 'package:marketplace_kelompok4/pages/payment_page.dart'; 
 
 
 void main() {
@@ -44,7 +37,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: AddProduct());
+        home: AdminLogin());
   }
 }
 
