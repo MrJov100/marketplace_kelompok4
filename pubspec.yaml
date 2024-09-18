@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   curved_navigation_bar: ^1.0.6
+  image_picker: ^1.1.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -62,6 +63,7 @@ flutter:
   assets:
     - assets/images/login.png
     - assets/images/signup.png
+    - assets/images/admin_login.png
     - images/boy.png
     - images/headphone_icon.png
     - images/laptop.png
