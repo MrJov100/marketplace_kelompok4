@@ -5,7 +5,9 @@ import 'package:marketplace_kelompok4/pages/profile.dart';
 import 'home.dart';
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+  final int initialTabIndex;
+
+  const BottomNav({super.key, this.initialTabIndex = 0});
 
   @override
   State<BottomNav> createState() => _BottomNavState();
@@ -13,32 +15,33 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   late List<Widget> pages;
-  late Home HomePage;
+  late Home homePage;
   late Order order;
   late Profile profile;
   int currentTabIndex = 0;
 
   @override
   void initState() {
-    // Nama metode harus 'initState'
-    super.initState(); // Panggil 'super.initState()' di awal
-    HomePage = const Home();
+    super.initState();
+    homePage = const Home();
     order = Order();
     profile = Profile();
-    pages = [HomePage, order, profile];
+    pages = [homePage, order, profile];
+    currentTabIndex = widget.initialTabIndex; 
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
+        index: currentTabIndex, 
         height: 65,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(237, 163, 185, 215),
         color: Colors.black,
         animationDuration: const Duration(milliseconds: 500),
         onTap: (int index) {
           setState(() {
-            currentTabIndex = index; // Set 'currentTabIndex' ketika tab diubah
+            currentTabIndex = index;
           });
         },
         items: const [

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace_kelompok4/pages/CategoryProductPage.dart';
+import 'package:marketplace_kelompok4/pages/product_detail.dart';
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
+import 'package:marketplace_kelompok4/pages/drawer_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,11 +22,26 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(241, 255, 255, 255),
+      backgroundColor: Color.fromARGB(237, 163, 185, 215),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFfd6f3e),
+        elevation: 0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(Icons.menu,
+                  color: const Color.fromARGB(255, 255, 255, 255)),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+      ),
+      drawer: const DrawerMenu(),
       body: SingleChildScrollView(
-        // Added to enable scrolling
         child: Container(
-          margin: EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
+          margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -126,8 +144,7 @@ class _HomeState extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("All Products",
-                      style: AppWidget.semiboldTextFeildStyle()),
+                  Text("Flash Sale", style: AppWidget.semiboldTextFeildStyle()),
                   Text("See all",
                       style: TextStyle(
                           color: Color(0xFFfd6f3e),
@@ -144,24 +161,63 @@ class _HomeState extends State<Home> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   children: [
-                    ProductCard(
-                      image: "images/headphone2.png",
-                      name: "Headphone",
-                      price: "\$100",
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProductDetail(
+                                    productName: 'Headphone',
+                                    productPrice: '\$100',
+                                    productImage: 'iamges/headphone2.png',
+                                  )),
+                        );
+                      },
+                      child: ProductCard(
+                        image: "images/headphone2.png",
+                        name: "Headphone",
+                        price: "\$100",
+                      ),
                     ),
-                    ProductCard(
-                      image: "images/watch2.png",
-                      name: "Apple Watch",
-                      price: "\$300",
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProductDetail(
+                                    productName: 'Apple Watch',
+                                    productPrice: '\$300',
+                                    productImage: 'images/watch2.png',
+                                  )),
+                        );
+                      },
+                      child: ProductCard(
+                        image: "images/watch2.png",
+                        name: "Apple Watch",
+                        price: "\$300",
+                      ),
                     ),
-                    ProductCard(
-                      image: "images/laptop2.png",
-                      name: "Laptop",
-                      price: "\$1000",
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProductDetail(
+                                    productName: 'Laptop',
+                                    productPrice: '\$1000',
+                                    productImage: 'images/laptop2.png',
+                                  )),
+                        );
+                      },
+                      child: ProductCard(
+                        image: "images/laptop2.png",
+                        name: "Laptop",
+                        price: "\$1000",
+                      ),
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -176,7 +232,17 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        String category = getCategoryFromImage(image);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryProductPage(category: category),
+          ),
+        );
+      },
+      child: Container(
         padding: EdgeInsets.all(20.0),
         margin: EdgeInsets.only(right: 20.0),
         decoration: BoxDecoration(
@@ -193,7 +259,17 @@ class CategoryTile extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Icon(Icons.arrow_forward)
-            ]));
+            ]),
+      ),
+    );
+  }
+
+  String getCategoryFromImage(String imagePath) {
+    if (imagePath.contains("headphone")) return "Headphone";
+    if (imagePath.contains("laptop")) return "Laptop";
+    if (imagePath.contains("watch")) return "Watch";
+    if (imagePath.contains("TV")) return "TV";
+    return "Category";
   }
 }
 
@@ -261,5 +337,3 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
-
-//Menit : 1.33.30
