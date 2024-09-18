@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 import 'package:marketplace_kelompok4/pages/signup.dart';
+import 'package:marketplace_kelompok4/Admin/admin_login.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -162,6 +163,34 @@ class _LogInState extends State<LogIn> {
                     ),
                   )
                 ],
+              ),
+              const SizedBox(
+                height: 15.0, 
+              ),
+              Row(
+                children: [
+                  const Text(
+                    "You're an admin? ",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 18.0,
+                        color: Color.fromARGB(255, 72, 69, 69)),
+                  ),
+                  GestureDetector(
+                    onTap: () => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AdminLogin()))
+                    },
+                    child: const Text(
+                      "Admin Login",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ),
+                ],  
               )
             ],
           ),

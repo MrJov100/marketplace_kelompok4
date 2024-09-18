@@ -3,6 +3,8 @@ import 'add_product.dart';
 import 'all_order.dart';  
 
 class HomeAdmin extends StatelessWidget {
+  const HomeAdmin({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

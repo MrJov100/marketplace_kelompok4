@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'home_admin.dart'; // Import file HomeAdmin
+import 'package:marketplace_kelompok4/pages/login.dart'; 
+import 'home_admin.dart'; 
 
 class AdminLogin extends StatefulWidget {
+  const AdminLogin({super.key});
+  
   @override
   _AdminLoginState createState() => _AdminLoginState();
 }
@@ -14,6 +17,18 @@ class _AdminLoginState extends State<AdminLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => LogIn()),
+            );
+          },
+        ),
+        title: Text('Admin Login'),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
