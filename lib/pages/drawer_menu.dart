@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/AboutUs.dart';
+import 'package:marketplace_kelompok4/pages/onboarding.dart';
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu({super.key});
@@ -57,6 +58,10 @@ class DrawerMenu extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Onboarding()),
+                );
               },
             ),
           ],
