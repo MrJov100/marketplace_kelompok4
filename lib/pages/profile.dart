@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/onboarding.dart';
 import 'package:marketplace_kelompok4/pages/profile_change.dart';
-import 'package:marketplace_kelompok4/pages/onboarding.dart'; // Tambahkan import halaman logout
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -23,34 +22,37 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(237, 163, 185, 215),
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
+        backgroundColor: Color(0xFFfd6f3e),
+        elevation: 0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(Icons.info_outline,
+                  color: const Color.fromARGB(255, 255, 255, 255)),
+              onPressed: () {},
+            );
           },
         ),
         title: const Text(
-          'Edit Account Profile',
-          textAlign: TextAlign.center,
+          'Account Profile',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 20,
-            fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: Colors.transparent,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.only(bottom: 10),
-                height: MediaQuery.of(context).size.height * 0.80,
+                height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: const ShapeDecoration(
                   color: Colors.white,

@@ -27,14 +27,14 @@ class _BottomNavState extends State<BottomNav> {
     order = Order();
     profile = Profile();
     pages = [homePage, order, profile];
-    currentTabIndex = widget.initialTabIndex; 
+    currentTabIndex = widget.initialTabIndex;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-        index: currentTabIndex, 
+        index: currentTabIndex,
         height: 65,
         backgroundColor: Color.fromARGB(237, 163, 185, 215),
         color: Colors.black,

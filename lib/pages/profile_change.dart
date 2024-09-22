@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 import 'package:marketplace_kelompok4/pages/profile.dart';
 
 class ProfileChangee extends StatefulWidget {
@@ -144,8 +145,7 @@ class _ProfileChangeeState extends State<ProfileChangee> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const Profile()), // Arahkan ke halaman profile
+                          builder: (context) => const BottomNav()),
                     );
                   },
                   child: Container(
@@ -166,7 +166,7 @@ class _ProfileChangeeState extends State<ProfileChangee> {
                       ],
                     ),
                     child: const Text(
-                      'Simpan',
+                      'Save Changes',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFFFEFFFF),
@@ -177,7 +177,7 @@ class _ProfileChangeeState extends State<ProfileChangee> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20), // Jarak untuk tombol simpan
+                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -265,7 +265,7 @@ class _ProfileChangeeState extends State<ProfileChangee> {
               hintText: 'Select your birthday',
               suffixIcon: IconButton(
                 icon: const Icon(Icons.calendar_today),
-                onPressed: () => _selectDate(context), // Show date picker
+                onPressed: () => _selectDate(context),
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
@@ -279,7 +279,7 @@ class _ProfileChangeeState extends State<ProfileChangee> {
 
   Widget _buildGenderRadio() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -292,31 +292,56 @@ class _ProfileChangeeState extends State<ProfileChangee> {
               fontWeight: FontWeight.w600,
             ),
           ),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
-                child: RadioListTile<String>(
-                  title: const Text('Male'),
-                  value: 'Male',
-                  groupValue: _gender,
-                  onChanged: (String? value) {
-                    setState(() {
-                      _gender = value;
-                    });
-                  },
+                child: Row(
+                  children: [
+                    Radio<String>(
+                      value: 'Male',
+                      groupValue: _gender,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _gender = value;
+                        });
+                      },
+                      activeColor: const Color(0xFFfd6f3e),
+                    ),
+                    const Text(
+                      'Male',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
-                child: RadioListTile<String>(
-                  title: const Text('Female'),
-                  value: 'Female',
-                  groupValue: _gender,
-                  onChanged: (String? value) {
-                    setState(() {
-                      _gender = value;
-                    });
-                  },
+                child: Row(
+                  children: [
+                    Radio<String>(
+                      value: 'Female',
+                      groupValue: _gender,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _gender = value;
+                        });
+                      },
+                      activeColor: const Color(0xFFfd6f3e),
+                    ),
+                    const Text(
+                      'Female',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
