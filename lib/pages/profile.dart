@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:marketplace_kelompok4/pages/onboarding.dart';
 import 'package:marketplace_kelompok4/pages/profile_change.dart';
+import 'package:marketplace_kelompok4/pages/onboarding.dart'; // Tambahkan import halaman logout
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -10,7 +12,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final String name = 'Jovandi';
-  final String email = 'Jovandi@gmail.com';
+  final String email = 'jovandi@gmail.com';
   final String phone = '123-456-7890';
   final String address = '123 Main Street, City';
   final String birthday = '1990-01-01';
@@ -40,34 +42,28 @@ class _ProfileState extends State<Profile> {
         backgroundColor: Colors.transparent,
         centerTitle: true,
       ),
-      body: Stack(children: [
-        Container(
-          padding: const EdgeInsets.only(top: 60, left: 25, right: 25),
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(237, 163, 185, 215),
-          ),
-        ),
-        SingleChildScrollView(
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  height: MediaQuery.of(context).size.height * 0.558,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: const ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(29),
-                      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 10),
+                height: MediaQuery.of(context).size.height * 0.80,
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: const ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(29),
                     ),
                   ),
+                ),
+                child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 5),
                       Container(
                         width: 100,
                         height: 100,
@@ -75,8 +71,8 @@ class _ProfileState extends State<Profile> {
                           color: Colors.white,
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0KehqXBrMLd32HsfjDoaq098WeNA0b3g_2A&s")),
+                            image: AssetImage('images/boy.png'),
+                          ),
                           boxShadow: [
                             BoxShadow(
                               color: Color(0x3F000000),
@@ -87,13 +83,14 @@ class _ProfileState extends State<Profile> {
                           ],
                         ),
                       ),
+                      const SizedBox(height: 10),
                       _buildInfoField(label: 'Name', value: name),
                       _buildInfoField(label: 'Email', value: email),
                       _buildInfoField(label: 'Phone', value: phone),
                       _buildInfoField(label: 'Address', value: address),
                       _buildInfoField(label: 'Birthday', value: birthday),
                       _buildInfoField(label: 'Gender', value: _gender),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 5),
                       InkWell(
                         onTap: () {
                           Navigator.push(
@@ -103,8 +100,8 @@ class _ProfileState extends State<Profile> {
                           );
                         },
                         child: Container(
-                          padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 95, right: 95),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 95),
                           decoration: ShapeDecoration(
                             color: const Color(0xFFfd6f3e),
                             shape: RoundedRectangleBorder(
@@ -134,83 +131,94 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                InkWell(
-                  onTap: () {
-                    // Tambahkan logika penyimpanan data di sini
-                  },
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.06,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    decoration: ShapeDecoration(
-                      color: const Color.fromARGB(255, 62, 75, 253),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      shadows: const [
-                        BoxShadow(
-                          color: Color(0x3F000000),
-                          blurRadius: 4,
-                          offset: Offset(0, 4),
-                          spreadRadius: 0,
-                        )
-                      ],
+              ),
+              const SizedBox(height: 30),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const Onboarding()), // Arahkan ke halaman onBoarding
+                  );
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: ShapeDecoration(
+                    color: const Color.fromARGB(255, 62, 75, 253),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Center(
-                      child: const Text(
-                        'Logout',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFFFEFFFF),
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                        ),
+                    shadows: const [
+                      BoxShadow(
+                        color: Color(0x3F000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 4),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Logout',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFFFEFFFF),
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                InkWell(
-                  onTap: () {
-                    // Tambahkan logika penyimpanan data di sini
-                  },
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.06,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFFF24340),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      shadows: const [
-                        BoxShadow(
-                          color: Color(0x3F000000),
-                          blurRadius: 4,
-                          offset: Offset(0, 4),
-                          spreadRadius: 0,
-                        )
-                      ],
+              ),
+              const SizedBox(height: 20),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const Onboarding()), // Arahkan ke halaman onBoarding
+                  );
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFF24340),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Center(
-                      child: const Text(
-                        'Delete Account',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFFFEFFFF),
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                        ),
+                    shadows: const [
+                      BoxShadow(
+                        color: Color(0x3F000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 4),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Delete Account',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFFFEFFFF),
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
-        )
-      ]),
+        ),
+      ),
     );
   }
 
@@ -221,7 +229,7 @@ class _ProfileState extends State<Profile> {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 48.0, right: 48, top: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -239,7 +247,7 @@ class _ProfileState extends State<Profile> {
               value,
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: 12,
+                fontSize: 14,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
               ),
