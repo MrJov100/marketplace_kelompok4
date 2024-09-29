@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_kelompok4/pages/login.dart'; 
-import 'home_admin.dart'; 
+import 'package:marketplace_kelompok4/pages/login.dart';
+import 'home_admin.dart';
 
 class AdminLogin extends StatefulWidget {
   const AdminLogin({super.key});
-  
+
   @override
   _AdminLoginState createState() => _AdminLoginState();
 }
@@ -35,12 +35,12 @@ class _AdminLoginState extends State<AdminLogin> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 80), 
+              SizedBox(height: 80),
               Image.asset(
-                'assets/images/admin_login.png', 
+                'assets/images/admin_login.png',
                 height: 200,
               ),
-              SizedBox(height: 30), 
+              SizedBox(height: 30),
               Text(
                 'Admin Panel',
                 style: TextStyle(
@@ -61,7 +61,7 @@ class _AdminLoginState extends State<AdminLogin> {
               SizedBox(height: 20),
               TextField(
                 controller: _passwordController,
-                obscureText: true, 
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(
@@ -83,11 +83,12 @@ class _AdminLoginState extends State<AdminLogin> {
 
                   if (username.isEmpty || password.isEmpty) {
                     setState(() {
-                      _errorMessage = 'Username atau Password tidak boleh kosong!';
+                      _errorMessage =
+                          'Username atau Password tidak boleh kosong!';
                     });
                   } else if (username == "Admin" && password == "Admin") {
                     setState(() {
-                      _errorMessage = ''; 
+                      _errorMessage = '';
                     });
                     Navigator.push(
                       context,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 import 'package:marketplace_kelompok4/pages/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -10,6 +11,51 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
+
+  Future<void> _signUp() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: _emailController.text, password: _passwordController.text);
+
+      // You can save additional user information to Firestore if needed
+      // For example, saving the name of the user
+      // await FirebaseFirestore.instance.collection('users').doc(userCredential.user?.uid).set({
+      //   'name': _nameController.text,
+      // });
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => BottomNav()),
+      );
+    } catch (e) {
+      _showErrorDialog(e.toString());
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close dialog
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +76,7 @@ class _SignUpState extends State<SignUp> {
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               Text(
                 "Please enter the details below to\n                    continue",
                 style: TextStyle(
@@ -41,9 +85,7 @@ class _SignUpState extends State<SignUp> {
                   color: Colors.grey[600],
                 ),
               ),
-              const SizedBox(
-                height: 40.0,
-              ),
+              const SizedBox(height: 40.0),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -55,22 +97,19 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               Container(
                 padding: const EdgeInsets.only(left: 20.0),
                 decoration: BoxDecoration(
-                    color: Color(0xFFF4F5F9),
+                    color: const Color(0xFFF4F5F9),
                     borderRadius: BorderRadius.circular(20)),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
                       border: InputBorder.none, hintText: "Name"),
                 ),
               ),
-              SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -82,22 +121,19 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               Container(
                 padding: const EdgeInsets.only(left: 20.0),
                 decoration: BoxDecoration(
-                    color: Color(0xFFF4F5F9),
+                    color: const Color(0xFFF4F5F9),
                     borderRadius: BorderRadius.circular(20)),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
                       border: InputBorder.none, hintText: "Email"),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -112,22 +148,18 @@ class _SignUpState extends State<SignUp> {
               Container(
                 padding: const EdgeInsets.only(left: 20.0),
                 decoration: BoxDecoration(
-                    color: Color(0xFFF4F5F9),
+                    color: const Color(0xFFF4F5F9),
                     borderRadius: BorderRadius.circular(20)),
-                child: const TextField(
+                child: TextField(
+                  controller: _passwordController,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: InputBorder.none, hintText: "Password"),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               GestureDetector(
-                onTap: () => {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => BottomNav())),
-                },
+                onTap: _signUp,
                 child: Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width / 2,
@@ -147,9 +179,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15.0,
-              ),
+              const SizedBox(height: 15.0),
               Row(
                 children: [
                   const Text(

@@ -26,7 +26,7 @@ class _AllordersState extends State<AllOrder> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop(); 
+            Navigator.of(context).pop();
           },
         ),
       ),
@@ -48,7 +48,7 @@ class _AllordersState extends State<AllOrder> {
                   children: [
                     CircleAvatar(
                       radius: 40,
-                      backgroundImage: AssetImage('images/boy.png'), 
+                      backgroundImage: AssetImage('images/boy.png'),
                     ),
                     SizedBox(width: 20.0),
                     Expanded(
@@ -89,8 +89,7 @@ class _AllordersState extends State<AllOrder> {
                           ),
                           SizedBox(height: 10),
                           ElevatedButton(
-                            onPressed: () {
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFFfd6f3e),
                               shape: RoundedRectangleBorder(

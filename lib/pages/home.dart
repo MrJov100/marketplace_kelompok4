@@ -4,6 +4,7 @@ import 'package:marketplace_kelompok4/pages/product_detail.dart';
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
 import 'package:marketplace_kelompok4/pages/drawer_menu.dart';
 import 'package:marketplace_kelompok4/pages/profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,6 +20,21 @@ class _HomeState extends State<Home> {
     "images/watch.png",
     "images/TV.png",
   ];
+
+  String? userName;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserName();
+  }
+
+  void _getUserName() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      userName = user?.email?.split('@')[0] ?? "User";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +69,11 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Hey, User",
+                        "Hey, $userName",
                         style: AppWidget.boldTextFeildStyle(),
                       ),
                       Text(
-                        "Good Morning",
+                        "Have a Good Day",
                         style: AppWidget.LighttextFeildStyle(),
                       ),
                     ],

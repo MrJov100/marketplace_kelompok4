@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 import 'package:marketplace_kelompok4/pages/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:marketplace_kelompok4/Admin/admin_login.dart';
 
 class LogIn extends StatefulWidget {
@@ -11,6 +12,46 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future<void> _login() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text, password: _passwordController.text);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => BottomNav()),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        _showErrorDialog('Kesalahan email/password salah.');
+      } else {
+        _showErrorDialog('Terjadi kesalahan, silakan coba lagi.');
+      }
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close dialog
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +72,7 @@ class _LogInState extends State<LogIn> {
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               Text(
                 "Please enter the details below to\n                    continue",
                 style: TextStyle(
@@ -42,9 +81,7 @@ class _LogInState extends State<LogIn> {
                   color: Colors.grey[600],
                 ),
               ),
-              const SizedBox(
-                height: 40.0,
-              ),
+              const SizedBox(height: 40.0),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -56,22 +93,19 @@ class _LogInState extends State<LogIn> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               Container(
                 padding: const EdgeInsets.only(left: 20.0),
                 decoration: BoxDecoration(
-                    color: Color(0xFFF4F5F9),
+                    color: const Color(0xFFF4F5F9),
                     borderRadius: BorderRadius.circular(20)),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
                       border: InputBorder.none, hintText: "Email"),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -86,47 +120,28 @@ class _LogInState extends State<LogIn> {
               Container(
                 padding: const EdgeInsets.only(left: 20.0),
                 decoration: BoxDecoration(
-                    color: Color(0xFFF4F5F9),
+                    color: const Color(0xFFF4F5F9),
                     borderRadius: BorderRadius.circular(20)),
-                child: const TextField(
+                child: TextField(
+                  controller: _passwordController,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: InputBorder.none, hintText: "Password"),
                 ),
               ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
+              const SizedBox(height: 20.0),
               GestureDetector(
-                onTap: () => {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => BottomNav()))
-                },
+                onTap: _login,
                 child: Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width / 2,
                     padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Colors.deepPurple,
                         borderRadius: BorderRadius.circular(20.0)),
                     child: const Center(
                       child: Text(
-                        "LOGIN",
+                        "SIGN IN",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.0,
@@ -136,17 +151,16 @@ class _LogInState extends State<LogIn> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15.0,
-              ),
+              const SizedBox(height: 15.0),
               Row(
                 children: [
                   const Text(
                     "Don't have an account? ",
                     style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 18.0,
-                        color: Color.fromARGB(255, 72, 69, 69)),
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18.0,
+                      color: Color.fromARGB(255, 72, 69, 69),
+                    ),
                   ),
                   GestureDetector(
                     onTap: () => {
@@ -156,16 +170,13 @@ class _LogInState extends State<LogIn> {
                     child: const Text(
                       "Sign Up",
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.deepPurple,
                         fontWeight: FontWeight.w300,
                         fontSize: 18.0,
                       ),
                     ),
                   )
                 ],
-              ),
-              const SizedBox(
-                height: 15.0,
               ),
               Row(
                 children: [

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "186244231736",
+    "project_id": "marketplace-flutter1",
+    "storage_bucket": "marketplace-flutter1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186244231736:android:a1a5e4c5405fbe56d8eccd",
+        "android_client_info": {
+          "package_name": "com.example.marketplace_kelompok4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0r7O7rFENi6B0oB1WP2ME8XqfdOfdwOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
