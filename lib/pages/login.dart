@@ -26,8 +26,8 @@ class _LogInState extends State<LogIn> {
               const Text(
                 "Sign In",
                 style: TextStyle(
-                  fontWeight: FontWeight.w600, // Semibold
-                  fontSize: 20.0, // Sesuaikan dengan kebutuhan
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20.0,
                   color: Colors.black,
                 ),
               ),
@@ -46,7 +46,7 @@ class _LogInState extends State<LogIn> {
                 height: 40.0,
               ),
               const Align(
-                alignment: Alignment.centerLeft, // Align to left
+                alignment: Alignment.centerLeft,
                 child: Text(
                   "Email",
                   style: TextStyle(
@@ -73,7 +73,7 @@ class _LogInState extends State<LogIn> {
                 height: 20.0,
               ),
               const Align(
-                alignment: Alignment.centerLeft, // Align to left
+                alignment: Alignment.centerLeft,
                 child: Text(
                   "Password",
                   style: TextStyle(
@@ -165,7 +165,7 @@ class _LogInState extends State<LogIn> {
                 ],
               ),
               const SizedBox(
-                height: 15.0, 
+                height: 15.0,
               ),
               Row(
                 children: [
@@ -190,7 +190,7 @@ class _LogInState extends State<LogIn> {
                       ),
                     ),
                   ),
-                ],  
+                ],
               )
             ],
           ),

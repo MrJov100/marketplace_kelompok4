@@ -25,8 +25,8 @@ class _SignUpState extends State<SignUp> {
               const Text(
                 "Sign Up",
                 style: TextStyle(
-                  fontWeight: FontWeight.w600, // Semibold
-                  fontSize: 20.0, // Sesuaikan dengan kebutuhan
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20.0,
                   color: Colors.black,
                 ),
               ),
@@ -45,7 +45,7 @@ class _SignUpState extends State<SignUp> {
                 height: 40.0,
               ),
               const Align(
-                alignment: Alignment.centerLeft, // Align to left
+                alignment: Alignment.centerLeft,
                 child: Text(
                   "Name",
                   style: TextStyle(
@@ -72,7 +72,7 @@ class _SignUpState extends State<SignUp> {
                 height: 20.0,
               ),
               const Align(
-                alignment: Alignment.centerLeft, // Align to left
+                alignment: Alignment.centerLeft,
                 child: Text(
                   "Email",
                   style: TextStyle(

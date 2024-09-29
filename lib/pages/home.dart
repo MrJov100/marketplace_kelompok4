@@ -3,6 +3,7 @@ import 'package:marketplace_kelompok4/pages/CategoryProductPage.dart';
 import 'package:marketplace_kelompok4/pages/product_detail.dart';
 import 'package:marketplace_kelompok4/widget/support_widget.dart';
 import 'package:marketplace_kelompok4/pages/drawer_menu.dart';
+import 'package:marketplace_kelompok4/pages/profile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -52,7 +53,7 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Hey, Jovandi",
+                        "Hey, User",
                         style: AppWidget.boldTextFeildStyle(),
                       ),
                       Text(
@@ -62,13 +63,24 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Profile(),
+                          ),
+                        );
+                      },
                       child: Image.asset(
                         "images/boy.png",
                         height: 70,
                         width: 70,
                         fit: BoxFit.cover,
-                      )),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               SizedBox(
@@ -96,11 +108,6 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Categories", style: AppWidget.semiboldTextFeildStyle()),
-                  Text("See all",
-                      style: TextStyle(
-                          color: Color(0xFFfd6f3e),
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold)),
                 ],
               ),
               SizedBox(
@@ -145,11 +152,6 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Flash Sale", style: AppWidget.semiboldTextFeildStyle()),
-                  Text("See all",
-                      style: TextStyle(
-                          color: Color(0xFFfd6f3e),
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold)),
                 ],
               ),
               SizedBox(
@@ -169,7 +171,7 @@ class _HomeState extends State<Home> {
                               builder: (context) => const ProductDetail(
                                     productName: 'Headphone',
                                     productPrice: '\$100',
-                                    productImage: 'iamges/headphone2.png',
+                                    productImage: 'images/headphone2.png',
                                   )),
                         );
                       },
@@ -213,6 +215,27 @@ class _HomeState extends State<Home> {
                         image: "images/laptop2.png",
                         name: "Laptop",
                         price: "\$1000",
+                      ),
+                    ),
+                    // Produk baru: Tablet dengan ukuran gambar lebih kecil
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProductDetail(
+                                    productName: 'Tablet',
+                                    productPrice: '\$500',
+                                    productImage: 'images/tablet.png',
+                                  )),
+                        );
+                      },
+                      child: ProductCard(
+                        image: "images/tablet.png",
+                        name: "Tablet",
+                        price: "\$500",
+                        imageHeight: 120,
+                        imageWidth: 150,
                       ),
                     ),
                   ],
@@ -277,12 +300,17 @@ class ProductCard extends StatelessWidget {
   final String image;
   final String name;
   final String price;
+  final double imageHeight;
+  final double imageWidth;
 
-  const ProductCard(
-      {super.key,
-      required this.image,
-      required this.name,
-      required this.price});
+  const ProductCard({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.price,
+    this.imageHeight = 120, // Default size
+    this.imageWidth = 120, // Default size
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -297,8 +325,8 @@ class ProductCard extends StatelessWidget {
         children: [
           Image.asset(
             image,
-            height: 120,
-            width: 120,
+            height: imageHeight,
+            width: imageWidth,
             fit: BoxFit.cover,
           ),
           Text(

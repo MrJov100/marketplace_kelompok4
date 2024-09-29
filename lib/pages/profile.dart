@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/onboarding.dart';
 import 'package:marketplace_kelompok4/pages/profile_change.dart';
+import 'package:marketplace_kelompok4/pages/bottomnav.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -10,11 +11,11 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final String name = 'Jovandi';
-  final String email = 'jovandi@gmail.com';
+  final String name = 'User';
+  final String email = 'user@gmail.com';
   final String phone = '123-456-7890';
   final String address = '123 Main Street, City';
-  final String birthday = '1990-01-01';
+  final String birthday = '2024-07-17';
   final String _gender = 'Male';
 
   @override
@@ -22,13 +23,13 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(237, 163, 185, 215),
       appBar: AppBar(
-        backgroundColor: Color(0xFFfd6f3e),
+        backgroundColor: const Color(0xFFfd6f3e),
         elevation: 0,
         leading: Builder(
           builder: (context) {
             return IconButton(
-              icon: Icon(Icons.info_outline,
-                  color: const Color.fromARGB(255, 255, 255, 255)),
+              icon: const Icon(Icons.info_outline,
+                  color: Color.fromARGB(255, 255, 255, 255)),
               onPressed: () {},
             );
           },
@@ -134,14 +135,52 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
+              // Tombol Back to Home
               InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            const Onboarding()), // Arahkan ke halaman onBoarding
+                    MaterialPageRoute(builder: (context) => const BottomNav()),
+                  );
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFF32CD32),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    shadows: const [
+                      BoxShadow(
+                        color: Color(0x3F000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 4),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Back to Home',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFFFEFFFF),
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Onboarding()),
                   );
                 },
                 child: Container(
@@ -180,9 +219,7 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            const Onboarding()), // Arahkan ke halaman onBoarding
+                    MaterialPageRoute(builder: (context) => const Onboarding()),
                   );
                 },
                 child: Container(
