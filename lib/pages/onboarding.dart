@@ -40,8 +40,7 @@ class _OnboardingState extends State<Onboarding> {
                 height: 50.0,
               ),
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // Mengatur posisi Row di tengah
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -68,7 +67,7 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 50.0), // Jarak horizontal antar tombol
+                  const SizedBox(width: 50.0),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(

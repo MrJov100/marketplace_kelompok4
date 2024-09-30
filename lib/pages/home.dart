@@ -233,7 +233,6 @@ class _HomeState extends State<Home> {
                         price: "\$1000",
                       ),
                     ),
-                    // Produk baru: Tablet dengan ukuran gambar lebih kecil
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -324,8 +323,8 @@ class ProductCard extends StatelessWidget {
     required this.image,
     required this.name,
     required this.price,
-    this.imageHeight = 120, // Default size
-    this.imageWidth = 120, // Default size
+    this.imageHeight = 120,
+    this.imageWidth = 120,
   });
 
   @override

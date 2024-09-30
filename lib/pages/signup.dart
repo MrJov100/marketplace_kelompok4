@@ -21,12 +21,6 @@ class _SignUpState extends State<SignUp> {
           .createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
 
-      // You can save additional user information to Firestore if needed
-      // For example, saving the name of the user
-      // await FirebaseFirestore.instance.collection('users').doc(userCredential.user?.uid).set({
-      //   'name': _nameController.text,
-      // });
-
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => BottomNav()),
@@ -46,7 +40,7 @@ class _SignUpState extends State<SignUp> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close dialog
+                Navigator.of(context).pop();
               },
               child: const Text('OK'),
             ),
