@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketplace_kelompok4/pages/onboarding.dart';
 import 'package:marketplace_kelompok4/pages/profile_change.dart';
 import 'package:marketplace_kelompok4/pages/bottomnav.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -11,12 +12,30 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final String name = 'User';
-  final String email = 'user@gmail.com';
-  final String phone = '123-456-7890';
-  final String address = '123 Main Street, City';
-  final String birthday = '2024-07-17';
-  final String _gender = 'Male';
+  String? name;
+  String? email;
+  String? phone = '123-456-7890'; // Default value
+  String? address = '123 Main Street, City'; // Default value
+  String? birthday = '2024-07-17'; // Default value
+  String? _gender = 'Male'; // Default value
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  // Fungsi untuk mengambil informasi pengguna yang login
+  Future<void> _loadUserData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      setState(() {
+        email = user.email;
+        // Pisahkan nama dari email
+        name = user.email!.split('@')[0];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,12 +106,14 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      _buildInfoField(label: 'Name', value: name),
-                      _buildInfoField(label: 'Email', value: email),
-                      _buildInfoField(label: 'Phone', value: phone),
-                      _buildInfoField(label: 'Address', value: address),
-                      _buildInfoField(label: 'Birthday', value: birthday),
-                      _buildInfoField(label: 'Gender', value: _gender),
+                      _buildInfoField(
+                          label: 'Name', value: name ?? 'Loading...'),
+                      _buildInfoField(
+                          label: 'Email', value: email ?? 'Loading...'),
+                      _buildInfoField(label: 'Phone', value: phone!),
+                      _buildInfoField(label: 'Address', value: address!),
+                      _buildInfoField(label: 'Birthday', value: birthday!),
+                      _buildInfoField(label: 'Gender', value: _gender!),
                       const SizedBox(height: 5),
                       InkWell(
                         onTap: () {
@@ -178,9 +199,11 @@ class _ProfileState extends State<Profile> {
               const SizedBox(height: 20),
               InkWell(
                 onTap: () {
-                  Navigator.push(
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => const Onboarding()),
+                    (route) => false,
                   );
                 },
                 child: Container(
@@ -217,10 +240,7 @@ class _ProfileState extends State<Profile> {
               const SizedBox(height: 20),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Onboarding()),
-                  );
+                  // Tambahkan fungsi delete akun di sini jika diperlukan
                 },
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.06,
