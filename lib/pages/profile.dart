@@ -1,8 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:marketplace_kelompok4/pages/onboarding.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:marketplace_kelompok4/pages/profile_change.dart';
-import 'package:marketplace_kelompok4/pages/bottomnav.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -12,53 +13,45 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String? name;
-  String? email;
-  String? phone = '123-456-7890'; // Default value
-  String? address = '123 Main Street, City'; // Default value
-  String? birthday = '2024-07-17'; // Default value
-  String? _gender = 'Male'; // Default value
+  String name = 'User';
+  String email = 'user@gmail.com';
+  String phone = '123-456-7890';
+  String address = '123 Main Street, City';
+  String birthday = '2024-07-17';
+  String gender = 'Male';
+  String? profileImageUrl;
 
   @override
   void initState() {
     super.initState();
-    _loadUserData();
+    _loadProfileData();
   }
 
-  // Fungsi untuk mengambil informasi pengguna yang login
-  Future<void> _loadUserData() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      setState(() {
-        email = user.email;
-        // Pisahkan nama dari email
-        name = user.email!.split('@')[0];
-      });
-    }
+  Future<void> _loadProfileData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      name = prefs.getString('name') ?? 'User';
+      email = prefs.getString('email') ?? 'user@gmail.com';
+      phone = prefs.getString('phone') ?? '1234567890';
+      address = prefs.getString('address') ?? '123 Main Street, City';
+      birthday = prefs.getString('birthday') ?? '2024-07-17';
+      gender = prefs.getString('gender') ?? 'Male';
+      profileImageUrl = prefs.getString('profileImage');
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(237, 163, 185, 215),
+      backgroundColor: const Color(0xFFF0F4F8),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFfd6f3e),
-        elevation: 0,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.info_outline,
-                  color: Color.fromARGB(255, 255, 255, 255)),
-              onPressed: () {},
-            );
-          },
-        ),
+        backgroundColor: const Color(0xFFFD6F3E),
+        elevation: 2,
         title: const Text(
           'Account Profile',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,
@@ -67,213 +60,87 @@ class _ProfileState extends State<Profile> {
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
+              const SizedBox(height: 30),
               Container(
-                padding: const EdgeInsets.only(bottom: 10),
-                height: MediaQuery.of(context).size.height * 0.7,
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: const ShapeDecoration(
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
                   color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(29),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
                     ),
-                  ),
+                  ],
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 5),
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage('images/boy.png'),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x3F000000),
-                              blurRadius: 4,
-                              offset: Offset(0, 4),
-                              spreadRadius: 0,
-                            )
-                          ],
-                        ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {},
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: (profileImageUrl != null)
+                            ? FileImage(File(profileImageUrl!))
+                            : AssetImage('images/boy.png'),
                       ),
-                      const SizedBox(height: 10),
-                      _buildInfoField(
-                          label: 'Name', value: name ?? 'Loading...'),
-                      _buildInfoField(
-                          label: 'Email', value: email ?? 'Loading...'),
-                      _buildInfoField(label: 'Phone', value: phone!),
-                      _buildInfoField(label: 'Address', value: address!),
-                      _buildInfoField(label: 'Birthday', value: birthday!),
-                      _buildInfoField(label: 'Gender', value: _gender!),
-                      const SizedBox(height: 5),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ProfileChangee()),
-                          );
-                        },
+                    ),
+                    const SizedBox(height: 20),
+                    _buildAnimatedInfoField(label: 'Name', value: name),
+                    _buildAnimatedInfoField(label: 'Email', value: email),
+                    _buildAnimatedInfoField(label: 'Phone', value: phone),
+                    _buildAnimatedInfoField(label: 'Address', value: address),
+                    _buildAnimatedInfoField(label: 'Birthday', value: birthday),
+                    _buildAnimatedInfoField(label: 'Gender', value: gender),
+                    const SizedBox(height: 20),
+                    InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfileChangee()),
+                        );
+                      },
+                      child: Animate(
+                        effects: [
+                          FadeEffect(
+                              duration: const Duration(milliseconds: 300)),
+                          ScaleEffect(
+                              duration: const Duration(milliseconds: 300)),
+                        ],
                         child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 95),
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFFfd6f3e),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            shadows: const [
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFD6F3E),
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
                               BoxShadow(
-                                color: Color(0x3F000000),
-                                blurRadius: 4,
-                                offset: Offset(0, 4),
-                                spreadRadius: 0,
-                              )
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 6,
+                                offset: const Offset(0, 4),
+                              ),
                             ],
                           ),
                           child: const Text(
-                            'Edit',
+                            'Edit Profile',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Color(0xFFFEFFFF),
-                              fontSize: 14,
-                              fontFamily: 'Inter',
+                              color: Colors.white,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 20),
-              // Tombol Back to Home
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const BottomNav()),
-                  );
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFF32CD32),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                      )
-                    ],
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Back to Home',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFFEFFFF),
-                        fontSize: 14,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              InkWell(
-                onTap: () {
-                  FirebaseAuth.instance.signOut();
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Onboarding()),
-                    (route) => false,
-                  );
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: ShapeDecoration(
-                    color: const Color.fromARGB(255, 62, 75, 253),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                      )
-                    ],
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Logout',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFFEFFFF),
-                        fontSize: 14,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              InkWell(
-                onTap: () {
-                  // Tambahkan fungsi delete akun di sini jika diperlukan
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFFF24340),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                      )
-                    ],
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Delete Account',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFFEFFFF),
-                        fontSize: 14,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
             ],
           ),
         ),
@@ -281,24 +148,30 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget _buildInfoField({
+  Widget _buildAnimatedInfoField({
     required String label,
     required String value,
   }) {
-    return Align(
-      alignment: Alignment.centerLeft,
+    return Animate(
+      effects: [
+        FadeEffect(duration: const Duration(milliseconds: 300)),
+        MoveEffect(
+          begin: const Offset(0, 10),
+          end: Offset.zero,
+          duration: const Duration(milliseconds: 300),
+        ),
+      ],
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               label,
               style: const TextStyle(
-                color: Colors.black,
-                fontSize: 12,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w600,
+                color: Colors.grey,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
               ),
             ),
             const SizedBox(height: 4),
@@ -306,9 +179,8 @@ class _ProfileState extends State<Profile> {
               value,
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: 14,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
